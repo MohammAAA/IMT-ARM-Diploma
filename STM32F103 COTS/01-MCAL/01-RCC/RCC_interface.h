@@ -1,7 +1,10 @@
 /******************************************************************************
 * @file RCC_interface.h
 * @brief This files contains the RCC driver functions declratations as well as
-* the used macros.
+* the used macros...
+* Functions and configurations to be added later: HSE bypass, HSI calibration & trim,
+* MCO, ADC prescaler, USB prescaler, RCC peripheral interrupts, reset functions,
+* and backup domain control.
 * @author: Mohammed Abdelalim
 * @version: V01
 * @date: 10-11-2020

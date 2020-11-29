@@ -6,12 +6,12 @@
 * @date: 10-11-2020
 *********************************************************************************************/
 
-#include "../include/STD_TYPES.h"
-#include "BIT_MATH.h"
+#include "../../04-Lib/STD_TYPES.h"
+#include "../../04-Lib/BIT_MATH.h"
 
-// e3ml include b eltarteeb da (brattebhom 3ala 7sb el dependancy bta3t-hom)
-#include "../include/RCC_interface.h" // lazm yb2a awl include 3shan el functions declarations bykoon feeha el macros elly f el 2 files elgayeen
-#include "../include/RCC_private.h"
+
+#include "RCC_interface.h"
+#include "RCC_private.h"
 #include "RCC_config.h"
 
 void RCC_voidInit(void){

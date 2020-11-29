@@ -9,6 +9,11 @@
 #ifndef RCC_PRIVATE_H
 #define RCC_PRIVATE_H
 
+// Clocks macros
+#define RCC_HSI 		    0
+#define RCC_HSE			    1
+#define RCC_PLL			    2
+
 // Registers addresses
 #define RCC_CR 			    	*((volatile u32 *) 0x40021000UL)
 #define RCC_CFGR 	    		*((volatile u32 *) 0x40021004UL)
@@ -21,17 +26,20 @@
 #define RCC_BDCR 	    		*((volatile u32 *) 0x40021020UL)
 #define RCC_CSR 		    	*((volatile u32 *) 0x40021024UL)
 
+// HSE configurations
 #define RCC_CR_HSE_ON			(1<<16)
 #define RCC_CR_HSE_ON_RDY		(1<<17)
 #define RCC_CFGR_SW_HSE1		(1<<0)
 #define RCC_CFGR_SW_HSE2		(1<<1)
 #define RCC_CFGR_SWS_HSE 		(1<<2)
 
+// HSI configurations
 #define RCC_CR_HSI_ON			(1<<0)
 #define RCC_CR_HSI_ON_RDY		(1<<1)
 #define RCC_CFGR_SW_HSI			0x00000003UL
 #define RCC_CFGR_SWS_HSI 		0x0000000CUL
 
+// PLL configurations
 #define RCC_CFGR_PLL_SRC		(1<<16)
 #define RCC_CFGR_PLL_XTPRE		(1<<17)
 #define RCC_CR_PLL_ON			(1<<24)
@@ -70,6 +78,7 @@
 #define RCC_PLLMUL_X15_2 		0x00080000UL
 #define RCC_PLLMUL_X16 			0x003C0000UL
 
+// APB2 bus configurations
 #define RCC_CFGR_PPRE2_DIV_1	0x00002000UL
 #define RCC_CFGR_PPRE2_DIV_2_1	0x00002000UL
 #define RCC_CFGR_PPRE2_DIV_2_2	0x00001800UL
@@ -79,6 +88,7 @@
 #define RCC_CFGR_PPRE2_DIV_8_2	0x00000800UL
 #define RCC_CFGR_PPRE2_DIV_16	0x00003800UL
 
+// APB1 bus configurations
 #define RCC_CFGR_PPRE1_DIV_1	0x00004000UL
 #define RCC_CFGR_PPRE1_DIV_2_1	0x00004000UL
 #define RCC_CFGR_PPRE1_DIV_2_2	0x00003000UL
@@ -88,6 +98,7 @@
 #define RCC_CFGR_PPRE1_DIV_8_2	0x00001000UL
 #define RCC_CFGR_PPRE1_DIV_16	0x00007000UL
 
+// AHB bus configurations
 #define RCC_CFGR_HPRE_DIV_1		0x00000080UL
 #define RCC_CFGR_HPRE_DIV_2_1	0x00000080UL
 #define RCC_CFGR_HPRE_DIV_2_2	0x00000070UL
@@ -105,16 +116,8 @@
 #define RCC_CFGR_HPRE_DIV_256_2	0x00000010UL
 #define RCC_CFGR_HPRE_DIV_512	0x000000F0UL
 
-
-
-
-
+// Clock security system configurations
 #define RCC_CR_CSS_ON			(1<<19)
 
-
-
-#define RCC_HSI 		    0
-#define RCC_HSE			    1
-#define RCC_PLL			    2
 
 #endif 
