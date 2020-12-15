@@ -6,8 +6,8 @@
 * @date: 15-12-2020
 *********************************************************************************************/
 
-#include "../../04-Lib/STD_TYPES.h"
-#include "../../04-Lib/BIT_MATH.h"
+#include "../../04-LIB/STD_TYPES.h"
+#include "../../04-LIB/BIT_MATH.h"
 
 #include "NVIC_interface.h"
 #include "NVIC_private.h"
@@ -56,17 +56,88 @@ void NVIC_voidInit (void){
 u8 NVIC_u8EnableInterrupt (u8 copy_u8InterruptNumber){
     u8 errorStatus = 0;
     if (copy_u8InterruptNumber < 32){
-        NVIC_ISER0 |=   (1<<copy_u8InterruptNumber);
-        errorSt
+        NVIC_ISER0 |= (1<<copy_u8InterruptNumber);
+        errorStatus = 0;
     }
     else if (copy_u8InterruptNumber < 60){
+        // just trivial data processing to simply deal with ISER1
         copy_u8InterruptNumber = copy_u8InterruptNumber - 32;
-        NVIC_ISER1 |=   (1<<copy_u8InterruptNumber);
+        NVIC_ISER1 |= (1<<copy_u8InterruptNumber);
+        errorStatus = 0;
     }
     else {
         errorStatus = 1;
-        return errorStatus;
     }
     return errorStatus;
+}
+
+u8 NVIC_u8DisableInterrupt (u8 copy_u8InterruptNumber){
+    u8 errorStatus = 0;
+    if (copy_u8InterruptNumber < 32){
+        NVIC_ICER0 |= (1<<copy_u8InterruptNumber);
+        errorStatus = 0;
+    }
+    else if (copy_u8InterruptNumber < 60){
+       // just trivial data processing to simply deal with ICER1
+        copy_u8InterruptNumber = copy_u8InterruptNumber - 32;
+        NVIC_ICER1 |= (1<<copy_u8InterruptNumber);
+        errorStatus = 0;
+    }
+    else {
+        errorStatus = 1;
+    }
+    return errorStatus;
+}
+
+u8 NVIC_u8ForcePendingInterrupt (u8 copy_u8InterruptNumber){
+    u8 errorStatus = 0;
+    if (copy_u8InterruptNumber < 32){
+        NVIC_ISPR0 |= (1<<copy_u8InterruptNumber);
+        errorStatus = 0;
+    }
+    else if (copy_u8InterruptNumber < 60){
+       // just trivial data processing to simply deal with ISPR1
+        copy_u8InterruptNumber = copy_u8InterruptNumber - 32;
+        NVIC_ISPR1 |= (1<<copy_u8InterruptNumber);
+        errorStatus = 0;
+    }
+    else {
+        errorStatus = 1;
+    }
+    return errorStatus;
+}
+
+u8 NVIC_u8ClearPendingInterrupt (u8 copy_u8InterruptNumber){
+    u8 errorStatus = 0;
+    if (copy_u8InterruptNumber < 32){
+        NVIC_ICPR0 |= (1<<copy_u8InterruptNumber);
+        errorStatus = 0;
+    }
+    else if (copy_u8InterruptNumber < 60){
+       // just trivial data processing to simply deal with ISPR1
+        copy_u8InterruptNumber = copy_u8InterruptNumber - 32;
+        NVIC_ICPR1 |= (1<<copy_u8InterruptNumber);
+        errorStatus = 0;
+    }
+    else {
+        errorStatus = 1;
+    }
+    return errorStatus;
+}
+
+u8 NVIC_u8GetActiveStatus (u8 copy_u8InterruptNumber){
+    u8 activeStatus = 0;
+     if (copy_u8InterruptNumber < 32){
+         // get the active status of the required interrupt by reading the corresponding bit only
+         // then shift the resulting value right so that the active status always returns '1' or '0'
+        activeStatus = (NVIC_IABR0 & (1<<copy_u8InterruptNumber)) >> copy_u8InterruptNumber;
+    }
+    else if (copy_u8InterruptNumber < 60){
+       // just trivial data processing to simply deal with ISPR1
+        copy_u8InterruptNumber = copy_u8InterruptNumber - 32;
+        // get the active status of the required interrupt by reading the corresponding bit only
+        // then shift the resulting value right so that the active status always returns '1' or '0'
+        activeStatus = (NVIC_IABR1 & (1<<copy_u8InterruptNumber)) >> copy_u8InterruptNumber;
+    }
 }
 
