@@ -139,5 +139,44 @@ u8 NVIC_u8GetActiveStatus (u8 copy_u8InterruptNumber){
         // then shift the resulting value right so that the active status always returns '1' or '0'
         activeStatus = (NVIC_IABR1 & (1<<copy_u8InterruptNumber)) >> copy_u8InterruptNumber;
     }
+    return activeStatus;
 }
 
+u8 NVIC_u8SetInterruptPriority (u8 copy_u8InterruptNumnber, u8 copy_u8Priority){
+    u8 errorStatus = 0;
+
+    if ((copy_u8InterruptNumnber < 60) && (copy_u8Priority<16)){
+    // We deal with NVIC_IPR as array of registers.
+    // To determine the specific IPR register corresponding to the interrupt number
+    // we divide the interrupt number by 4 (ex.: if int. number is 10, then (10/4=2) so we write on IPR[2])
+    // To determine the specific IP 8-bit register corresponding to the interrupt number in the
+    // determine IPR register, we take the modulus of the interrupt number so that the result is the
+    // location of the corresponding 8-bit register (ex.: 10%4=2, so we write in the IP[2])
+
+    // clear targetted bits
+    // note that we only access bits[4:7] of each 8-bit register, that's why we make additional 4 shifts at the end
+    NVIC_IPR[(copy_u8InterruptNumnber/4)] &= ~((0xF)<<((copy_u8InterruptNumnber%4)+4));
+
+    // bitmask the targetted bits with the required priority value
+    NVIC_IPR[(copy_u8InterruptNumnber/4)] |= ((copy_u8Priority)<<((copy_u8InterruptNumnber%4)+4));
+
+    errorStatus = 0;
+    }
+    else {
+        errorStatus = 1;
+    }
+
+   return errorStatus;
+}
+
+u8 NVIC_u8SwTriggerInterrupt (u16 copy_u16InterruptID){
+    u8 errorStatus = 0;
+    if (copy_u16InterruptID < 240){
+        NVIC_STIR = copy_u16InterruptID;
+        errorStatus = 0;
+    }
+    else {
+        errorStatus = 1;
+    }
+    return errorStatus;
+}

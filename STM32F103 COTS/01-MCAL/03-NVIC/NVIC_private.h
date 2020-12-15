@@ -30,7 +30,7 @@
 #define NVIC_IABR1                  *((volatile u32 *) (NVIC_BASE_ADDRESS+0x204))
 
 /* This following register is considered as an array whose first index is IPR[0],
- we can get along with this array until we (ideally) reach the IPR[20] which is
+ we can get along with this array until we (ideally) reach the IPR[20] that is
  specified in datasheet */
 #define NVIC_IPR                     ((volatile u32 *) (NVIC_BASE_ADDRESS+0x300))
 
