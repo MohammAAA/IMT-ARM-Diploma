@@ -103,11 +103,15 @@ u8 NVIC_u8GetActiveStatus (u8 copy_u8InterruptNumber);
  * @param copy_u8InterruptNumber The interrupt number for which the priority level
  *                               to be set
  * @param copy_u8Priority The priority level to be set for the interrupt, the assigned 
- *                        priority must be in range [0:15]
+ *                        priority must be in range [0:15], taking into consideration the group/subgroup configuration
+ *                        which is been applied in the init function  
+ * @param copy_u8SubPriority The sub-priority level to be set for the interrupt, the assigned 
+ *                        sub-priority must be in range [0:15], taking into consideration the group/subgroup configuration
+ *                        which is been applied in the init function
  *
  * @return '0' if function is successfully finished, '1' if otherwise
  */
-u8 NVIC_u8SetInterruptPriority (u8 copy_u8InterruptNumnber, u8 copy_u8Priority);
+u8 NVIC_u8SetInterruptPriority (u8 copy_u8InterruptNumber, u8 copy_u8Priority, u8 copy_u8SubPriority);
 
 /**
  * @brief triggers a certain interrupt by software

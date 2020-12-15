@@ -142,29 +142,108 @@ u8 NVIC_u8GetActiveStatus (u8 copy_u8InterruptNumber){
     return activeStatus;
 }
 
-u8 NVIC_u8SetInterruptPriority (u8 copy_u8InterruptNumnber, u8 copy_u8Priority){
+u8 NVIC_u8SetInterruptPriority (u8 copy_u8InterruptNumber, u8 copy_u8Priority, u8 copy_u8SubPriority){
     u8 errorStatus = 0;
 
-    if ((copy_u8InterruptNumnber < 60) && (copy_u8Priority<16)){
     // We deal with NVIC_IPR as array of registers.
     // To determine the specific IPR register corresponding to the interrupt number
     // we divide the interrupt number by 4 (ex.: if int. number is 10, then (10/4=2) so we write on IPR[2])
     // To determine the specific IP 8-bit register corresponding to the interrupt number in the
     // determine IPR register, we take the modulus of the interrupt number so that the result is the
     // location of the corresponding 8-bit register (ex.: 10%4=2, so we write in the IP[2])
+    // But first, we determine the configuration done in the PRIGROUP field in the initialization function
+    // to determine how will we deal with the binary point
 
+    if (copy_u8InterruptNumber < 60) {
+    #if NVIC_PRIORITY_GROUPS == NVIC_SIXTEEN_PRIORITY_GROUPS
+    if (copy_u8Priority < 16){
     // clear targetted bits
     // note that we only access bits[4:7] of each 8-bit register, that's why we make additional 4 shifts at the end
-    NVIC_IPR[(copy_u8InterruptNumnber/4)] &= ~((0xF)<<((copy_u8InterruptNumnber%4)+4));
+    NVIC_IPR[(copy_u8InterruptNumber/4)] &= ~((0xF)<<(((copy_u8InterruptNumber%4)*8)+4));
 
-    // bitmask the targetted bits with the required priority value
-    NVIC_IPR[(copy_u8InterruptNumnber/4)] |= ((copy_u8Priority)<<((copy_u8InterruptNumnber%4)+4));
+    // bitmask the interrupt priority bits with the required priority value
+    NVIC_IPR[(copy_u8InterruptNumber/4)] |= ((copy_u8Priority)<<(((copy_u8InterruptNumber%4)*8)+4));
 
     errorStatus = 0;
     }
     else {
         errorStatus = 1;
     }
+    #endif
+    #if NVIC_PRIORITY_GROUPS == NVIC_EIGHT_PRIORITY_GROUPS
+    if ((copy_u8Priority < 8) && (copy_u8SubPriority < 2)){
+    // clear targetted bits
+    // note that we only access bits[4:7] of each 8-bit register, that's why we make additional 4 shifts at the end
+    NVIC_IPR[(copy_u8InterruptNumber/4)] &= ~((0xF)<<(((copy_u8InterruptNumber%4)*8)+4));
+
+    // bitmask the priority bits with the required priority value
+    NVIC_IPR[(copy_u8InterruptNumber/4)] |= ((copy_u8Priority)<<(((copy_u8InterruptNumber%4)*8)+5));
+
+    // bitmask the sub-priority bit with the required subpriority value
+    NVIC_IPR[(copy_u8InterruptNumber/4)] |= ((copy_u8SubPriority)<<(((copy_u8InterruptNumber%4)*8)+4));
+
+    errorStatus = 0;
+    }
+    else {
+        errorStatus = 1;
+    }
+    #endif
+     #if NVIC_PRIORITY_GROUPS == NVIC_FOUR_PRIORITY_GROUPS
+    if ((copy_u8Priority < 4) && (copy_u8SubPriority < 4)){
+    // clear targetted bits
+    // note that we only access bits[4:7] of each 8-bit register, that's why we make additional 4 shifts at the end
+    NVIC_IPR[(copy_u8InterruptNumber/4)] &= ~((0xF)<<(((copy_u8InterruptNumber%4)*8)+4));
+
+    // bitmask the priority bits with the required priority value
+    NVIC_IPR[(copy_u8InterruptNumber/4)] |= ((copy_u8Priority)<<(((copy_u8InterruptNumber%4)*8)+6));
+
+    // bitmask the sub-priority bit with the required subpriority value
+    NVIC_IPR[(copy_u8InterruptNumber/4)] |= ((copy_u8SubPriority)<<(((copy_u8InterruptNumber%4)*8)+4));
+    
+    errorStatus = 0;
+    }
+    else {
+        errorStatus = 1;
+    }
+    #endif
+     #if NVIC_PRIORITY_GROUPS == NVIC_TWO_PRIORITY_GROUPS
+    if ((copy_u8Priority < 2) && (copy_u8SubPriority < 8)){
+    // clear targetted bits
+    // note that we only access bits[4:7] of each 8-bit register, that's why we make additional 4 shifts at the end
+    NVIC_IPR[(copy_u8InterruptNumber/4)] &= ~((0xF)<<(((copy_u8InterruptNumber%4)*8)+4));
+
+    // bitmask the priority bits with the required priority value
+    NVIC_IPR[(copy_u8InterruptNumber/4)] |= ((copy_u8Priority)<<(((copy_u8InterruptNumber%4)*8)+7));
+
+    // bitmask the sub-priority bit with the required subpriority value
+    NVIC_IPR[(copy_u8InterruptNumber/4)] |= ((copy_u8SubPriority)<<(((copy_u8InterruptNumber%4)*8)+4));
+    
+    errorStatus = 0;
+    }
+    else {
+        errorStatus = 1;
+    }
+    #endif
+     #if NVIC_PRIORITY_GROUPS == NVIC_NO_PRIORITY_GROUPS
+    if (copy_u8SubPriority < 16){
+    // clear targetted bits
+    // note that we only access bits[4:7] of each 8-bit register, that's why we make additional 4 shifts at the end
+    NVIC_IPR[(copy_u8InterruptNumber/4)] &= ~((0xF)<<(((copy_u8InterruptNumber%4)*8)+4));
+
+    // bitmask the sub-priority bit with the required subpriority value
+    NVIC_IPR[(copy_u8InterruptNumber/4)] |= ((copy_u8SubPriority)<<(((copy_u8InterruptNumber%4)*8)+4));
+    
+    errorStatus = 0;
+    }
+    else {
+        errorStatus = 1;
+    }
+    #endif
+    }
+    else {
+        errorStatus =1;
+    }
+
 
    return errorStatus;
 }
