@@ -29,7 +29,7 @@ void NVIC_voidInit (void){
     // write the VECTKEY to allow write access to the register
     // then clear the PRIGROUP bits[8:10] that correspond to the priority group
     // then bitmask the PRIGROUP bits[8:10] with the required value
-    SCB_AIRCR = SCB_AIRCR_VECTKEY & (~(0b111<<8)) |  NVIC_SIXTEEN_PRIORITY_GROUPS;
+    SCB_AIRCR = (SCB_AIRCR_VECTKEY & (~(0b111<<8))) |  NVIC_SIXTEEN_PRIORITY_GROUPS;
     #elif NVIC_PRIORITY_GROUPS == NVIC_EIGHT_PRIORITY_GROUPS
     // write the VECTKEY to allow write access to the register
     // then clear the PRIGROUP bits[8:10] that correspond to the priority group
