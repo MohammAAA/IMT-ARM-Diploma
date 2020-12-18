@@ -56,13 +56,22 @@ void NVIC_voidInit (void){
 u8 NVIC_u8EnableInterrupt (u8 copy_u8InterruptNumber){
     u8 errorStatus = 0;
     if (copy_u8InterruptNumber < 32){
-        NVIC_ISER0 |= (1<<copy_u8InterruptNumber);
+        //the following commented statement is converted to 3 assembly instructions:
+        // 1)shifting 2)oring 3)storing
+        //NVIC_ISER0 |= (1<<copy_u8InterruptNumber);
+
+        //the following statement is converted to only 2 ass. instructions:
+        // 1)shifting 2)storing .. so it more optimizes our code
+        // note that the programming manual specifies that writing '0' to this
+        // register has no effect .. that's why we can write the following 
+        // statements without logical error. 
+        NVIC_ISER0 = (1<<copy_u8InterruptNumber); 
         errorStatus = 0;
     }
     else if (copy_u8InterruptNumber < 60){
         // just trivial data processing to simply deal with ISER1
         copy_u8InterruptNumber = copy_u8InterruptNumber - 32;
-        NVIC_ISER1 |= (1<<copy_u8InterruptNumber);
+        NVIC_ISER1 = (1<<copy_u8InterruptNumber);
         errorStatus = 0;
     }
     else {
@@ -74,13 +83,13 @@ u8 NVIC_u8EnableInterrupt (u8 copy_u8InterruptNumber){
 u8 NVIC_u8DisableInterrupt (u8 copy_u8InterruptNumber){
     u8 errorStatus = 0;
     if (copy_u8InterruptNumber < 32){
-        NVIC_ICER0 |= (1<<copy_u8InterruptNumber);
+        NVIC_ICER0 = (1<<copy_u8InterruptNumber);
         errorStatus = 0;
     }
     else if (copy_u8InterruptNumber < 60){
        // just trivial data processing to simply deal with ICER1
         copy_u8InterruptNumber = copy_u8InterruptNumber - 32;
-        NVIC_ICER1 |= (1<<copy_u8InterruptNumber);
+        NVIC_ICER1 = (1<<copy_u8InterruptNumber);
         errorStatus = 0;
     }
     else {
@@ -92,13 +101,13 @@ u8 NVIC_u8DisableInterrupt (u8 copy_u8InterruptNumber){
 u8 NVIC_u8ForcePendingInterrupt (u8 copy_u8InterruptNumber){
     u8 errorStatus = 0;
     if (copy_u8InterruptNumber < 32){
-        NVIC_ISPR0 |= (1<<copy_u8InterruptNumber);
+        NVIC_ISPR0 = (1<<copy_u8InterruptNumber);
         errorStatus = 0;
     }
     else if (copy_u8InterruptNumber < 60){
        // just trivial data processing to simply deal with ISPR1
         copy_u8InterruptNumber = copy_u8InterruptNumber - 32;
-        NVIC_ISPR1 |= (1<<copy_u8InterruptNumber);
+        NVIC_ISPR1 = (1<<copy_u8InterruptNumber);
         errorStatus = 0;
     }
     else {
@@ -110,13 +119,13 @@ u8 NVIC_u8ForcePendingInterrupt (u8 copy_u8InterruptNumber){
 u8 NVIC_u8ClearPendingInterrupt (u8 copy_u8InterruptNumber){
     u8 errorStatus = 0;
     if (copy_u8InterruptNumber < 32){
-        NVIC_ICPR0 |= (1<<copy_u8InterruptNumber);
+        NVIC_ICPR0 = (1<<copy_u8InterruptNumber);
         errorStatus = 0;
     }
     else if (copy_u8InterruptNumber < 60){
        // just trivial data processing to simply deal with ISPR1
         copy_u8InterruptNumber = copy_u8InterruptNumber - 32;
-        NVIC_ICPR1 |= (1<<copy_u8InterruptNumber);
+        NVIC_ICPR1 = (1<<copy_u8InterruptNumber);
         errorStatus = 0;
     }
     else {
