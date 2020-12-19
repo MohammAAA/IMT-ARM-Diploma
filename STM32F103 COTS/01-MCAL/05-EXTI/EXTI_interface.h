@@ -91,6 +91,18 @@ u8 EXTI_u8FireSWInterrupt (u8 copy_u8InputLine);
  */
 u8 EXTI_u8GetInterruptStatus (u8 copy_u8InputLine);
 
+/**
+ * @brief Callbacks a function from a higher layer to the lower layer
+ *
+ * These functions take as input the address of the function to be callbacked, assigns this
+ * address to the global static pointer to function so that the higher layer function can be
+ * accessed and called by a lower layer SW component by this global pointer to function.
+ * The global pointer to function that can be accessed is called (EXTI_Callback[x]),
+ * where x = [0:18]
+ * 
+ * @param pf a pointer to the function to be callbacked
+ *
+ */
 void EXTI_voidEXTI0SetCallback (void *pf (void));
 void EXTI_voidEXTI1SetCallback (void *pf (void));
 void EXTI_voidEXTI2SetCallback (void *pf (void));
