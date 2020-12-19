@@ -199,7 +199,7 @@ void EXTI0_IRQHandler(void)
 {
     // call the user ISR
 	EXTI_Callback[0]();
-    // clear the pending interrupt flag
+    // clear the pending interrupt flag so that a new interrupt can take place
 	(EXTI -> PR) |= (1<<EXTI_EXTI0);
 }
 
@@ -207,7 +207,7 @@ void EXTI1_IRQHandler(void)
 {
     // call the user ISR
 	EXTI_Callback[1]();
-    // clear the pending interrupt flag
+    // clear the pending interrupt flag so that a new interrupt can take place
 	(EXTI -> PR) |= (1<<EXTI_EXTI1);
 }
 
@@ -215,7 +215,7 @@ void EXTI2_IRQHandler(void)
 {
     // call the user ISR
 	EXTI_Callback[2]();
-    // clear the pending interrupt flag
+    // clear the pending interrupt flag so that a new interrupt can take place
 	(EXTI -> PR) |= (1<<EXTI_EXTI2);
 }
 
@@ -223,7 +223,7 @@ void EXTI3_IRQHandler(void)
 {
     // call the user ISR
 	EXTI_Callback[3]();
-    // clear the pending interrupt flag
+    // clear the pending interrupt flag so that a new interrupt can take place
 	(EXTI -> PR) |= (1<<EXTI_EXTI3);
 }
 
@@ -231,7 +231,7 @@ void EXTI4_IRQHandler(void)
 {
     // call the user ISR
 	EXTI_Callback[4]();
-    // clear the pending interrupt flag
+    // clear the pending interrupt flag so that a new interrupt can take place
 	(EXTI -> PR) |= (1<<EXTI_EXTI4);
 }
 
@@ -239,7 +239,7 @@ void EXTI5_IRQHandler(void)
 {
     // call the user ISR
 	EXTI_Callback[5]();
-    // clear the pending interrupt flag
+    // clear the pending interrupt flag so that a new interrupt can take place
 	(EXTI -> PR) |= (1<<EXTI_EXTI5);
 }
 
@@ -247,7 +247,7 @@ void EXTI6_IRQHandler(void)
 {
     // call the user ISR
 	EXTI_Callback[6]();
-    // clear the pending interrupt flag
+    // clear the pending interrupt flag so that a new interrupt can take place
 	(EXTI -> PR) |= (1<<EXTI_EXTI6);
 }
 
@@ -255,7 +255,7 @@ void EXTI7_IRQHandler(void)
 {
     // call the user ISR
 	EXTI_Callback[7]();
-    // clear the pending interrupt flag
+    // clear the pending interrupt flag so that a new interrupt can take place
 	(EXTI -> PR) |= (1<<EXTI_EXTI7);
 }
 
@@ -263,7 +263,7 @@ void EXTI8_IRQHandler(void)
 {
     // call the user ISR
 	EXTI_Callback[8]();
-    // clear the pending interrupt flag
+    // clear the pending interrupt flag so that a new interrupt can take place
 	(EXTI -> PR) |= (1<<EXTI_EXTI8);
 }
 
@@ -271,7 +271,7 @@ void EXTI9_IRQHandler(void)
 {
     // call the user ISR
 	EXTI_Callback[9]();
-    // clear the pending interrupt flag
+    // clear the pending interrupt flag so that a new interrupt can take place
 	(EXTI -> PR) |= (1<<EXTI_EXTI9);
 }
 
@@ -279,7 +279,7 @@ void EXTI10_IRQHandler(void)
 {
     // call the user ISR
 	EXTI_Callback[10]();
-    // clear the pending interrupt flag
+    // clear the pending interrupt flag so that a new interrupt can take place
 	(EXTI -> PR) |= (1<<EXTI_EXTI10);
 }
 
@@ -287,7 +287,7 @@ void EXTI11_IRQHandler(void)
 {
     // call the user ISR
 	EXTI_Callback[11]();
-    // clear the pending interrupt flag
+    // clear the pending interrupt flag so that a new interrupt can take place
 	(EXTI -> PR) |= (1<<EXTI_EXTI11);
 }
 
@@ -295,7 +295,7 @@ void EXTI12_IRQHandler(void)
 {
     // call the user ISR
 	EXTI_Callback[12]();
-    // clear the pending interrupt flag
+    // clear the pending interrupt flag so that a new interrupt can take place
 	(EXTI -> PR) |= (1<<EXTI_EXTI12);
 }
 
@@ -303,7 +303,7 @@ void EXTI13_IRQHandler(void)
 {
     // call the user ISR
 	EXTI_Callback[13]();
-    // clear the pending interrupt flag
+    // clear the pending interrupt flag so that a new interrupt can take place
 	(EXTI -> PR) |= (1<<EXTI_EXTI13);
 }
 
@@ -311,7 +311,7 @@ void EXTI14_IRQHandler(void)
 {
     // call the user ISR
 	EXTI_Callback[14]();
-    // clear the pending interrupt flag
+    // clear the pending interrupt flag so that a new interrupt can take place
 	(EXTI -> PR) |= (1<<EXTI_EXTI14);
 }
 
@@ -319,7 +319,7 @@ void EXTI15_IRQHandler(void)
 {
     // call the user ISR
 	EXTI_Callback[15]();
-    // clear the pending interrupt flag
+    // clear the pending interrupt flag so that a new interrupt can take place
 	(EXTI -> PR) |= (1<<EXTI_EXTI15);
 }
 
@@ -327,7 +327,7 @@ void EXTI16_IRQHandler(void)
 {
     // call the user ISR
 	EXTI_Callback[16]();
-    // clear the pending interrupt flag
+    // clear the pending interrupt flag so that a new interrupt can take place
 	(EXTI -> PR) |= (1<<EXTI_EXTI16);
 }
 
@@ -335,7 +335,7 @@ void EXTI17_IRQHandler(void)
 {
     // call the user ISR
 	EXTI_Callback[17]();
-    // clear the pending interrupt flag
+    // clear the pending interrupt flag so that a new interrupt can take place
 	(EXTI -> PR) |= (1<<EXTI_EXTI17);
 }
 
@@ -343,6 +343,6 @@ void EXTI18_IRQHandler(void)
 {
     // call the user ISR
 	EXTI_Callback[18]();
-    // clear the pending interrupt flag
+    // clear the pending interrupt flag so that a new interrupt can take place
 	(EXTI -> PR) |= (1<<EXTI_EXTI18);
 }
