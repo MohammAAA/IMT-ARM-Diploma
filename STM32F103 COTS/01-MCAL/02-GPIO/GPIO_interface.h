@@ -41,11 +41,14 @@
 #define PIN_14											14
 #define PIN_15											15
 
+#define GPIO_PIN_HIGH									1
+#define GPIO_PIN_LOW									0
+
 
 /**
  * @brief Enables a certain GPIO portx (in STM32F103C, x may be A,B, or C)
  *
- * This functions takes as input the port number to be enabled to activate
+ * This function takes as input the port number to be enabled to activate
  * its clock with the RCC peripheral
  * 
  * @pre_condition RCC_voidInit() has been called before calling this function
@@ -61,7 +64,7 @@ void GPIO_voidEnablePort(u8 copy_portNumber);
 /**
  * @brief assigns the direction and mode of a specific pin in a specific port
  *
- * This functions takes as input the port number in which the pin will be accessed,
+ * This function takes as input the port number in which the pin will be accessed,
  * the exact pin number, and the direction and its configuration to set them to this
  * specific pin
  * 
@@ -76,7 +79,7 @@ void GPIO_voidSetPinDirection (u8 copy_portNumber, u8 copy_pinNumber, u8 copy_mo
 /**
  * @brief assigns the direction and mode of the whole port
  *
- * This functions takes as input the port number which will be accessed in this function,
+ * This function takes as input the port number which will be accessed in this function,
  * and the direction and its configuration to set them to this
  * specific port
  * 
@@ -91,12 +94,12 @@ void GPIO_voidSetPortDirection (u8 copy_portNumber, u8 copy_modeAndConfig);
 /**
  * @brief sets the output value of a specific pin to high or low value
  *
- * This functions takes as input the port number in which the pin will be accessed,
+ * This function takes as input the port number in which the pin will be accessed,
  * the exact pin number, and the value to be written to this pin
  * 
  * @param copy_portNumber The port number in which the pin will be accessed (GPIO_PORTx_PERIPHERAL_ID)
  * @param copy_pinNumber The exact pin number to be written to (decimal from 0 to 15)
- * @param copy_value the value to be assigned to the pin (1 or 0)
+ * @param copy_value the value to be assigned to the pin (GPIO_PIN_HIGH, GPIO_PIN_LOW)
  *
  * @return void
  */
@@ -105,7 +108,7 @@ void GPIO_voidSetPinValue (u8 copy_portNumber, u8 copy_pinNumber, u8 copy_value)
 /**
  * @brief sets the output value of the whole port to high or low value
  *
- * This functions takes as input the port number which will be written to,
+ * This function takes as input the port number which will be written to,
  * and the value to be written to this port
  * 
  * @param copy_portNumber The port number to be written to (GPIO_PORTx_PERIPHERAL_ID)
@@ -118,20 +121,20 @@ void GPIO_voidSetPortValue (u8 copy_portNumber, u16 copy_value);
 /**
  * @brief reads the input value of a specific pin whether it's high or low value
  *
- * This functions takes as input the port number in which the pin will be read,
+ * This function takes as input the port number in which the pin will be read,
  * the exact pin number, and returns the value of this pin
  * 
  * @param copy_portNumber The port number in which the pin will be accessed (GPIO_PORTx_PERIPHERAL_ID)
  * @param copy_pinNumber The exact pin number to be read (decimal from 0 to 15)
  *
- * @return u8, the value of this pin (whether 1 or 0)
+ * @return u8, the value of this pin (whether GPIO_PIN_HIGH or GPIO_PIN_LOW)
  */
 u8 GPIO_u8GetPinValue (u8 copy_portNumber, u8 copy_pinNumber);
 
 /**
  * @brief reads the input value of the whole port
  *
- * This functions takes as input the port number to be read,
+ * This function takes as input the port number to be read,
  * and returns the value of this port
  * 
  * @param copy_portNumber The port number to be read (GPIO_PORTx_PERIPHERAL_ID)

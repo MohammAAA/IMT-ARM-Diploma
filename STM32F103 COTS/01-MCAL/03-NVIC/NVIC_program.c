@@ -18,7 +18,7 @@ void NVIC_voidInit (void){
     NVIC_ICER0 = NVIC_DISABLE_ALL_INTERRUPTS;
     NVIC_ICER1 = NVIC_DISABLE_ALL_INTERRUPTS;
 
-    // We need a register in another peripheral that we haven't implemented it yet
+    // We need a register in another peripheral that we haven't implemented yet
     // so we define this register and its needed macros right here.
     #define SCB_AIRCR           *((volatile u32 *) (0xE000ED00+0x0C))
     #define SCB_AIRCR_VECTKEY    (0x5FA<<16)

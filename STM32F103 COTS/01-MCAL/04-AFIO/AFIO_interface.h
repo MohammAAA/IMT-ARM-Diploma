@@ -12,6 +12,28 @@
 #ifndef _AFIO_INTERFACE_H
 #define _AFIO_INTERFACE_H
 
+#define AFIO_EXTI0                      0
+#define AFIO_EXTI1                      1
+#define AFIO_EXTI2                      2
+#define AFIO_EXTI3                      3
+#define AFIO_EXTI4                      4
+#define AFIO_EXTI5                      5
+#define AFIO_EXTI6                      6
+#define AFIO_EXTI7                      7
+#define AFIO_EXTI8                      8
+#define AFIO_EXTI9                      9
+#define AFIO_EXTI10                     10
+#define AFIO_EXTI11                     11
+#define AFIO_EXTI12                     12
+#define AFIO_EXTI13                     13
+#define AFIO_EXTI14                     14
+#define AFIO_EXTI15                     15
+
+#define AFIO_PORTA                      0b0000
+#define AFIO_PORTB                      0b0001
+#define AFIO_PORTC                      0b0010
+
+
 /**
  * @brief Enables a the RCC clock for the AFIO peripheral
  *
@@ -36,7 +58,7 @@ void AFIO_voidInit(void);
  *                               (AFIO_EXTIx, x=0:15)
  * @param copy_u8PortNumber The port number in which the pin is to be configured (AFIO_PORTA, B, or C)
  *
- * @return void
+ * @return 0 if function completed successfully, 1 if otherwise
  */
 u8 AFIO_u8SetInputLine(u8 copy_u8InputLineNumber, u8 copy_u8PortNumber);
 #endif

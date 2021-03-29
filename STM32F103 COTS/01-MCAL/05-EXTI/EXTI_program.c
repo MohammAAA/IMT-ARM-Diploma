@@ -137,61 +137,61 @@ u8 EXTI_u8GetInterruptStatus (u8 copy_u8InputLine){
     return interruptStatus;
 }
 
-void EXTI_voidEXTI0SetCallback (void *pf (void)){
+void EXTI_voidEXTI0SetCallback (void (*pf) (void)){
     EXTI_Callback[0] = pf;
 }
-void EXTI_voidEXTI1SetCallback (void *pf (void)){
+void EXTI_voidEXTI1SetCallback (void (*pf) (void)){
     EXTI_Callback[1] = pf;
 }
-void EXTI_voidEXTI2SetCallback (void *pf (void)){
+void EXTI_voidEXTI2SetCallback (void (*pf) (void)){
     EXTI_Callback[2] = pf;
 }
-void EXTI_voidEXTI3SetCallback (void *pf (void)){
+void EXTI_voidEXTI3SetCallback (void (*pf) (void)){
     EXTI_Callback[3] = pf;
 }
-void EXTI_voidEXTI4SetCallback (void *pf (void)){
+void EXTI_voidEXTI4SetCallback (void (*pf) (void)){
     EXTI_Callback[4] = pf;
 }
-void EXTI_voidEXTI5SetCallback (void *pf (void)){
+void EXTI_voidEXTI5SetCallback (void (*pf) (void)){
     EXTI_Callback[5] = pf;
 }
-void EXTI_voidEXTI6SetCallback (void *pf (void)){
+void EXTI_voidEXTI6SetCallback (void (*pf) (void)){
     EXTI_Callback[6] = pf;
 }
-void EXTI_voidEXTI7SetCallback (void *pf (void)){
+void EXTI_voidEXTI7SetCallback (void (*pf) (void)){
     EXTI_Callback[7] = pf;
 }
-void EXTI_voidEXTI8SetCallback (void *pf (void)){
+void EXTI_voidEXTI8SetCallback (void (*pf) (void)){
     EXTI_Callback[8] = pf;
 }
-void EXTI_voidEXTI9SetCallback (void *pf (void)){
+void EXTI_voidEXTI9SetCallback (void (*pf) (void)){
     EXTI_Callback[9] = pf;
 }
-void EXTI_voidEXTI10SetCallback (void *pf (void)){
+void EXTI_voidEXTI10SetCallback (void (*pf) (void)){
     EXTI_Callback[10] = pf;
 }
-void EXTI_voidEXTI11SetCallback (void *pf (void)){
+void EXTI_voidEXTI11SetCallback (void (*pf) (void)){
     EXTI_Callback[11] = pf;
 }
-void EXTI_voidEXTI12SetCallback (void *pf (void)){
+void EXTI_voidEXTI12SetCallback (void (*pf) (void)){
     EXTI_Callback[12] = pf;
 }
-void EXTI_voidEXTI13SetCallback (void *pf (void)){
+void EXTI_voidEXTI13SetCallback (void (*pf) (void)){
     EXTI_Callback[13] = pf;
 }
-void EXTI_voidEXTI14SetCallback (void *pf (void)){
+void EXTI_voidEXTI14SetCallback (void (*pf) (void)){
     EXTI_Callback[14] = pf;
 }
-void EXTI_voidEXTI15SetCallback (void *pf (void)){
+void EXTI_voidEXTI15SetCallback (void (*pf) (void)){
     EXTI_Callback[15] = pf;
 }
-void EXTI_voidEXTI16SetCallback (void *pf (void)){
+void EXTI_voidEXTI16SetCallback (void (*pf) (void)){
     EXTI_Callback[16] = pf;
 }
-void EXTI_voidEXTI17SetCallback (void *pf (void)){
+void EXTI_voidEXTI17SetCallback (void (*pf) (void)){
     EXTI_Callback[17] = pf;
 }
-void EXTI_voidEXTI18SetCallback (void *pf (void)){
+void EXTI_voidEXTI18SetCallback (void (*pf) (void)){
     EXTI_Callback[18] = pf;
 }
 
